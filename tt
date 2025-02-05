@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+import sys
+import logger
+import adder
+import remover
+import display
+import history
+
+def main():
+    try:
+        action = sys.argv[1]
+        args = sys.argv[2:]
+        if action == "help":
+            print("Getting help")
+            print("To log time to a object use this command: tt log (event in quotes) (amount of time in minutes)")
+            print("To add a object use this command: tt add (object name one word)")
+            print("To remove a object use this command: tt remove (object name one word)")
+            print("To display amount of total time for each object use this command: tt display")
+            print("To show the last 20 logged events use this command: tt history")
+            return
+        if action == "log":
+            logger.runCLI(args)
+        elif action == "add":
+            adder.runCLI(args)
+        elif action == "remove":
+            remover.runCLI(args)
+        elif action == "display":
+            display.run()
+        elif action == "history":
+            history.run()
+        else:
+            print("ERROR. Command not recongized.")
+            return
+
+    except: # catches wrong input form.
+        print("ERROR. Main except")
+if __name__ == "__main__":
+    main()
+
